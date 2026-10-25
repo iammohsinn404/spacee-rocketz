@@ -13,27 +13,33 @@ var hit = false
 
 
 func _ready():
-	
+ 
+	z_index = 10
+
 	collision_layer = 4 if from_player else 8
 	collision_mask = 2 if from_player else 1
-	
+
 	if direction == Vector2.ZERO:
 		direction = base_direction
 	rotation = direction.angle() - base_direction.angle()
-	
-	if texture !=null:
+
+	if texture != null:
 		$Sprite2D.texture = texture
 	if texture_scale > 0.0:
 		$Sprite2D.scale = Vector2.ONE * texture_scale
-		
+
 	if from_player:
 		area_entered.connect(_on_hit)
 	else:
 		body_entered.connect(_on_hit)
-	$VisibleOnScreenNotifier2D.screen_exited.connect(queue_free)		
+
 
 func _physics_process(delta):
 	position += direction * speed * delta
+
+ 
+	if position.y < -200 or position.y > 750 or position.x < -700 or position.x > 750:
+		queue_free()
 
 
 func _on_hit(other: Node) -> void:

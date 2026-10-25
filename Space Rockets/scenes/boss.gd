@@ -3,19 +3,19 @@ extends "res://Space Rockets/scenes/Enemy.gd"
 @export var max_health = 30
 @export var points = 300
 @export var hover_y = 40.0
-@export var enter_speed =100.0
-@export var sway_width = 250.0   
+@export var enter_speed = 100.0
+@export var sway_width = 250.0
 @export var sway_speed = 0.8
-@export var fire_interval = 1.6   
+@export var fire_interval = 1.6
 @export var laser_texture_file: Texture2D
 @export var laser_size = 0.55
 @export var boss_laser_speed = 320.0
- 
+
 @export var aimed_attack_every = 0
- 
+
 @export var enrage_below = 0.5
 @export var enrage_speed_up = 0.7
- 
+
 @export var bar_width = 220.0
 @export var bar_y = -120.0
 
@@ -28,6 +28,7 @@ var attack_timer = 1.5
 
 func _ready():
 	super()
+	GameState.fit_hitbox(sprite, hitbox)  
 	hp = max_health
 	start_x = position.x
 	laser_texture = laser_texture_file
@@ -60,7 +61,7 @@ func current_fire_interval() -> float:
 	return fire_interval
 
 
-# One attack = one laser from every nozzle at the same moment.
+
 func attack():
 	attack_count += 1
 	var aimed = aimed_attack_every > 0 and attack_count % aimed_attack_every == 0

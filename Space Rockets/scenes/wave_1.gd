@@ -4,6 +4,7 @@ enum Phase { SPAWNING, CLEARING, BOSS, DONE }
 
 const ENEMY = preload("res://Space Rockets/scenes/enemy.tscn")
 const MENU_SCENE = "res://Space Rockets/scenes/Main Scene.tscn"
+const MESSAGE_FONT = "res://Resources/FONTS AND STYLES/Trade_Winds/TradeWinds-Regular.ttf"
 const BOSS_SPAWN_POSITION = Vector2(27, -260)
 
 var data
@@ -13,18 +14,24 @@ var boss_alive = false
 var start_score = 0
 var finished = false
 
+# FIX: Wave 1.tscn has no "Overlay" node, so the old @onready lines
+# ($Overlay/Message and $Overlay/MenuButton) were null and crashed _ready().
+# These two are now built in code (see build_overlay below).
+var message: Label
+var menu_button: Button
+
 @onready var score_label = $Score
 @onready var wave_label = $Wave
 @onready var size_label = $Size
 @onready var player = $SpaceShipBody2D
 @onready var hearts = $Hearts
-@onready var message = $Overlay/Message
-@onready var menu_button = $Overlay/MenuButton
 
 
 func _ready():
 	data = GameState.current_wave()
 	start_score = GameState.score
+
+	build_overlay()
 
 	wave_label.text = "Wave = %d" % (GameState.wave + 1)
 	score_label.text = "Score = %d" % GameState.score
@@ -43,6 +50,31 @@ func _ready():
 	run_wave()
 
 
+# Big centered text (Game Over / Wave Cleared / Victory) and the menu button.
+func build_overlay():
+	var layer = CanvasLayer.new()
+	add_child(layer)
+
+	var box = VBoxContainer.new()
+	layer.add_child(box)
+	box.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	box.alignment = BoxContainer.ALIGNMENT_CENTER
+	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	message = Label.new()
+	message.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	message.add_theme_font_size_override("font_size", 48)
+	if ResourceLoader.exists(MESSAGE_FONT):
+		message.add_theme_font_override("font", load(MESSAGE_FONT))
+	box.add_child(message)
+
+	menu_button = Button.new()
+	menu_button.text = "Main Menu"
+	menu_button.custom_minimum_size = Vector2(200, 60)
+	menu_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	box.add_child(menu_button)
+
+
 func load_background():
 	var path = data.background
 
@@ -55,50 +87,36 @@ func load_background():
 func run_wave():
 	phase = Phase.SPAWNING
 
-	await get_tree().create_timer(1.0).timeout
-
+	await wait(1.0)
 	if finished:
 		return
 
 	for group in data.groups:
 		for i in range(group.count):
-			if finished:
-				return
-
 			spawn_enemy(group.type)
 
 			if data.one_at_a_time:
-				await await_unit_regular_dead()
-
-				if finished:
-					return
-
-				await get_tree().create_timer(0.8).timeout
+				await wait_until_regular_dead()
+				await wait(0.8)
 			else:
-				await get_tree().create_timer(group.gap).timeout
-
-				if finished:
-					return
-
-		if group.pause > 0.0:
-			await get_tree().create_timer(group.pause).timeout
+				await wait(group.gap)
 
 			if finished:
 				return
 
+		await wait(group.pause)
+		if finished:
+			return
+
 	phase = Phase.CLEARING
-
 	await wait_until_regular_dead()
-
 	if finished:
 		return
 
 	if data.boss != "":
 		phase = Phase.BOSS
 
-		var spawned = spawn_boss(data.boss)
-
-		if spawned:
+		if spawn_boss(data.boss):
 			while boss_alive and not finished:
 				await get_tree().create_timer(0.2).timeout
 
@@ -108,11 +126,17 @@ func run_wave():
 	wave_cleared()
 
 
-func await_unit_regular_dead():
-	while regular_alive > 0 and not finished:
-		await get_tree().create_timer(0.2).timeout
+# A timer that stops early once the wave is over. That way nothing is still
+# waiting when the scene reloads (that caused "class instance is gone" errors).
+func wait(seconds):
+	var left = seconds
+	while left > 0.0 and not finished:
+		await get_tree().create_timer(0.1).timeout
+		left -= 0.1
 
 
+# FIX: there were two identical functions for this (await_unit_regular_dead and
+# wait_until_regular_dead). Kept one.
 func wait_until_regular_dead():
 	while regular_alive > 0 and not finished:
 		await get_tree().create_timer(0.2).timeout
@@ -152,13 +176,7 @@ func spawn_boss(boss_name) -> bool:
 		push_error("Missing boss scene: " + path)
 		return false
 
-	var boss_scene = load(path)
-
-	if boss_scene == null:
-		push_error("Failed to load boss scene: " + path)
-		return false
-
-	var boss = boss_scene.instantiate()
+	var boss = load(path).instantiate()
 	boss.position = BOSS_SPAWN_POSITION
 	boss.died.connect(_on_boss_died.bind(boss.points))
 

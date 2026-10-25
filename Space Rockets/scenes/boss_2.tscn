@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Space Rockets/scenes/boss.gd" id="1_boss"]
+[ext_resource type="Texture2D" path="res://Resources/Sprites Art By Hannan/2nd_Boss_Enemy.png" id="2_art"]
+[ext_resource type="Texture2D" path="res://Resources/Lasers By Ichio.store/Boss 2.png" id="3_laser"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hit"]
+size = Vector2(162, 159)
+
+[node name="Boss2" type="Area2D" groups=["enemies"]]
+script = ExtResource("1_boss")
+max_health = 45
+points = 500
+hover_y = 80.0
+sway_speed = 0.9
+fire_interval = 1.5
+laser_texture_file = ExtResource("3_laser")
+laser_size = 0.5
+boss_laser_speed = 340.0
+aimed_attack_every = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_art")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-21, 1)
+shape = SubResource("RectangleShape2D_hit")
+
+[node name="Nozzles" type="Node2D" parent="."]
+
+[node name="Left" type="Marker2D" parent="Nozzles"]
+position = Vector2(-86, 80)
+
+[node name="Middle" type="Marker2D" parent="Nozzles"]
+position = Vector2(-21, 88)
+
+[node name="Right" type="Marker2D" parent="Nozzles"]
+position = Vector2(44, 80)

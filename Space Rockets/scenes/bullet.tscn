@@ -1,24 +1,26 @@
 [gd_scene format=3 uid="uid://cfl2e100j30dd"]
 
 [ext_resource type="Script" uid="uid://u5g1fll2ntsh" path="res://Space Rockets/scenes/bullet.gd" id="1_kh7il"]
-[ext_resource type="Texture2D" uid="uid://vvjmqlpqe344" path="res://Resources/bullet.png" id="2_kc5a7"]
+[ext_resource type="Texture2D" uid="uid://irdaxb3xpv8" path="res://Resources/Lasers By Ichio.store/Small Ship.png" id="2_kh7il"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vwwco"]
-radius = 9.0
-height = 58.0
+radius = 6.0
+height = 22.0
 
 [node name="Bullet" type="Area2D" unique_id=1963261648]
 script = ExtResource("1_kh7il")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=745517132]
 texture_filter = 1
+position = Vector2(-1.4305115e-06, -4.0000005)
 rotation = -1.5707964
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_kc5a7")
+scale = Vector2(0.13445783, 0.19094302)
+texture = ExtResource("2_kh7il")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=264347230]
+position = Vector2(1, -9)
 shape = SubResource("CapsuleShape2D_vwwco")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=679665703]
-position = Vector2(-5, 65)
+position = Vector2(-1, 37)
 rect = Rect2(-10, -25, 30, 35)

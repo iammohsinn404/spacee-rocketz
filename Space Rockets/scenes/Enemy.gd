@@ -25,12 +25,13 @@ var laser_speed = 300.0
 @onready var sprite = $Sprite2D
 @onready var hitbox = $CollisionShape2D
 
+
 func _ready():
 	add_to_group("enemies")
 	collision_layer = 2
 	collision_mask = 1
 	shoot_timer = randf_range(1.0, 3.0)
-	
+
 
 func setup(data):
 	speed = data.speed
@@ -55,14 +56,15 @@ func setup(data):
 	sprite.texture = load(data.sprite)
 	GameState.fit_hitbox(sprite, hitbox)
 
+
 func _physics_process(delta):
 	time += delta
 	position.x = start_x + sin(time * 2.0) * sway
 	position.y += speed * delta
-	
+
 	if position.y > BOTTOM_EDGE:
 		position.y = RESPAWN_Y
-		
+
 	if can_shoot and position.y > FIRST_VISIBLE_Y:
 		shoot_timer -= delta
 		if shoot_timer <= 0:
@@ -70,14 +72,14 @@ func _physics_process(delta):
 			shoot_timer = randf_range(fire_min, fire_max) / fire_rate
 
 	check_contact_damage()
-	
-	
+
+
 func check_contact_damage():
 	for body in get_overlapping_bodies():
 		if body.is_in_group("player") and body.has_method("take_damage"):
-			body.take_damage(1)	
-		
-		
+			body.take_damage(1)
+
+
 func muzzle_point() -> Vector2:
 	return hitbox.position + Vector2(0, hitbox.shape.size.y / 2.0)
 
@@ -92,7 +94,8 @@ func aim_direction(from_position: Vector2) -> Vector2:
 	# Never shoot sideways or backwards.
 	if dir.y < 0.5:
 		return Vector2.DOWN
-	return dir		
+	return dir
+
 
 func shoot():
 	var from_position = to_global(muzzle_point())
@@ -101,14 +104,16 @@ func shoot():
 
 func fire_laser(from_position: Vector2, direction: Vector2):
 	var laser = LASER.instantiate()
+ 
+	laser.from_player = false
 	laser.direction = direction
 	laser.speed = laser_speed
 	laser.texture = laser_texture
 	laser.texture_scale = laser_scale
 	get_parent().add_child(laser)
 	laser.global_position = from_position
-	
-	
+
+
 func take_damage(amount):
 	if hp <= 0:
 		return
@@ -119,4 +124,3 @@ func take_damage(amount):
 	else:
 		$Sprite2D.modulate = Color.RED
 		create_tween().tween_property(sprite, "modulate", Color.WHITE, 0.15)
-	
