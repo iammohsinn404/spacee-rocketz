@@ -7,7 +7,6 @@
 [ext_resource type="FontFile" uid="uid://dwpcp8orq1jv" path="res://Resources/FONTS AND STYLES/Schoolbell/Schoolbell-Regular.ttf" id="3_m1q67"]
 [ext_resource type="Script" uid="uid://bmxgs3aolx267" path="res://Space Rockets/scenes/hearts.gd" id="4_2uv2u"]
 [ext_resource type="FontFile" uid="uid://jbxi4nt1bbla" path="res://Resources/FONTS AND STYLES/Trade_Winds/TradeWinds-Regular.ttf" id="5_4eqo5"]
-[ext_resource type="Texture2D" uid="uid://coy88om673rfr" path="res://Resources/Player.png" id="6_2uv2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gagwc"]
 size = Vector2(90, 120)
@@ -50,7 +49,6 @@ shape = SubResource("RectangleShape2D_gagwc")
 texture_filter = 1
 position = Vector2(26.462143, 481.88864)
 scale = Vector2(0.39684767, 0.35136542)
-texture = ExtResource("6_2uv2u")
 
 [node name="Muzzle" type="Marker2D" parent="SpaceShipBody2D" unique_id=1897852554]
 texture_filter = 1
@@ -77,10 +75,10 @@ theme_override_font_sizes/font_size = 30
 text = "Wave = "
 
 [node name="Size" type="Label" parent="." unique_id=661214768]
-offset_left = 171.0
+offset_left = 123.0
 offset_top = -110.0
-offset_right = 306.0
-offset_bottom = -57.0
+offset_right = 258.0
+offset_bottom = -55.0
 theme_override_fonts/font = ExtResource("3_m1q67")
 theme_override_font_sizes/font_size = 40
 text = "Size ="

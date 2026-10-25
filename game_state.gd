@@ -31,3 +31,12 @@ func current_ship():
 func reset():
 	wave = 0
 	score = 0
+	
+
+func fit_hitbox(sprite: Sprite2D, hitbox: CollisionShape2D, shrink := 0.8):
+	var tex_size = sprite.texture.get_size()
+	var used = Rect2(sprite.texture.get_image().get_used_rect())
+	var shape = RectangleShape2D.new()
+	shape.size = used.size * sprite.scale * shrink
+	hitbox.shape = shape
+	hitbox.position = sprite.position + (used.get_center() - tex_size / 2.0) * sprite

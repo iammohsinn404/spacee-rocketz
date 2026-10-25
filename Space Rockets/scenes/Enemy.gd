@@ -4,16 +4,19 @@ signal died
 
 const BULLET = preload("res://Space Rockets/scenes/bullet.tscn")
 
-@export var speed = 100
-@export var can_shoot = true
+var speed = 100
+var can_shoot = true
 var hp = 1
 var sway = 0.0
 var start_x = 0.0
 var time = 0.0
 var shoot_timer = 2.0
+@onready var sprite = $Sprite2D
+@onready var hitbox = $CollisionShape2D
 
 func _ready():
-	add_to_group("enemies")
+	collision_layer = 2
+	collision_mask = 1
 	body_entered.connect(_on_body_entered)
 	shoot_timer = randf_range(1.0, 3.0)
 	
@@ -21,21 +24,21 @@ func _ready():
 func setup(data):
 	speed = data.speed
 	hp = data.hp
+	sway = data.sway
 	can_shoot = data.shoot
-	sway = data.shoot
 	start_x = clamp(position.x, -400, 450)
 	scale = Vector2.ONE * data.scale 
 	
-	var tex = load(data.sprite)
-	$Sprite2D.texture = tex
-	var shape = CircleShape2D.new()
-	shape.radius = tex.get_width() * 0.3
-	$CollisionShape2D.shape = shape
+	$Sprite2D.position = Vector2.ZERO
+	$Sprite2D.scale = Vector2.ONE
+	hitbox.scale = Vector2.ONE
+	$Sprite2D.texture = load(data.sprite)
+	GameState.fit_hitbox(sprite, hitbox)
 
 func _physics_process(delta):
 	time += delta
-	position.x = start_x + start_x + sin(time * 2.0) * sway
-	position.y += -speed * delta
+	position.x = start_x + sin(time * 2.0) * sway
+	position.y += speed * delta
 	
 	if position.y > 560:
 		position.y = -130
@@ -59,7 +62,7 @@ func shoot():
 func take_damage(amount):
 	if hp <= 0:
 		return
-		hp -= amount
+	hp -= amount
 	if hp <= 0:
 		died.emit()
 		queue_free()
@@ -69,6 +72,5 @@ func take_damage(amount):
 	
 	
 func _on_body_entered(body):
-	if body.is_in_group("player"):
 		body.take_damage(1)
 		take_damage(1)

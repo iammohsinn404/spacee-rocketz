@@ -6,6 +6,10 @@ var from_player = true
 
 
 func _ready():
+	
+	collision_layer = 4 if from_player else 8
+	collision_mask = 2 if from_player else 1
+	
 	area_entered.connect(_on_hit)
 	body_entered.connect(_on_hit)
 	$VisibleOnScreenNotifier2D.screen_exited.connect(queue_free)
@@ -21,14 +25,5 @@ func _physics_process(delta):
 		# player bullets only hurt enemies, enemy bullets only hurt the player
 		
 func _on_hit(other):
-	var target = "enemies" if from_player else "player"	
-	if other.is_in_group(target):
 		other.take_damage(1)
 		queue_free()
-			
-			
-func _on_body_entered(body):
-	if not from_player and body.is_in_group("players"):
-		body.take_damage(1)
-		queue_free()
-			
