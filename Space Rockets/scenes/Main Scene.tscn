@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bcksd6pj3ifd"]
+
+[ext_resource type="Script" uid="uid://cu4gr8maiks1e" path="res://Space Rockets/controls.gd" id="1_tig3g"]
+[ext_resource type="Texture2D" uid="uid://bcp8whstk8rni" path="res://Resources/Backgrounds by some websites/I guess MAin one.jpg" id="2_tig3g"]
+[ext_resource type="FontFile" uid="uid://cmp4q454v5pcs" path="res://Resources/FONTS AND STYLES/Amatic_SC/AmaticSC-Regular.ttf" id="3_ukr7x"]
+[ext_resource type="FontFile" uid="uid://jbxi4nt1bbla" path="res://Resources/FONTS AND STYLES/Trade_Winds/TradeWinds-Regular.ttf" id="4_s2vbp"]
+[ext_resource type="FontFile" uid="uid://d3rkurieewesi" path="res://Resources/FONTS AND STYLES/Playpen_Sans/PlaypenSans-VariableFont_wght.ttf" id="5_ukr7x"]
+[ext_resource type="FontFile" uid="uid://dqn6tcam5mnyl" path="res://Resources/FONTS AND STYLES/Edu_NSW_ACT_Cursive/EduNSWACTCursive-VariableFont_wght.ttf" id="6_s2vbp"]
+
+[sub_resource type="SystemFont" id="SystemFont_oce52"]
+
+[sub_resource type="Theme" id="Theme_ug1lx"]
+default_font = SubResource("SystemFont_oce52")
+
+[sub_resource type="Theme" id="Theme_ww3rf"]
+default_font = ExtResource("6_s2vbp")
+
+[node name="Control" type="Control" unique_id=606598458]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tig3g")
+metadata/_edit_use_anchors_ = true
+
+[node name="IGuessMAinOne" type="Sprite2D" parent="." unique_id=1565906338]
+position = Vector2(579, 327.49994)
+scale = Vector2(0.25714284, 0.10798594)
+texture = ExtResource("2_tig3g")
+
+[node name="Play" type="Button" parent="." unique_id=1203941721]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 232.0
+offset_right = 682.0
+offset_bottom = 357.0
+theme = SubResource("Theme_ug1lx")
+theme_override_colors/font_color = Color(0.7763785, 0.08055066, 0.531882, 1)
+theme_override_fonts/font = ExtResource("3_ukr7x")
+theme_override_font_sizes/font_size = 71
+text = "Play"
+
+[node name="Quit" type="Button" parent="." unique_id=1719440492]
+layout_mode = 0
+offset_left = 984.0
+offset_top = 552.0
+offset_right = 1073.0
+offset_bottom = 617.0
+theme_override_colors/font_color = Color(0.8745098, 0.015686275, 0.05882353, 1)
+theme_override_fonts/font = ExtResource("4_s2vbp")
+theme_override_font_sizes/font_size = 39
+text = "Quit"
+
+[node name="Space Rocktes" type="Label" parent="." unique_id=1870991176]
+texture_filter = 1
+layout_mode = 0
+offset_left = 44.0
+offset_top = 8.0
+offset_right = 470.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0.750258, 0.45285147, 0.6881488, 1)
+theme_override_fonts/font = ExtResource("5_ukr7x")
+theme_override_font_sizes/font_size = 42
+text = "Spacee Rocketz"
+
+[node name="Mission" type="Label" parent="." unique_id=1297258148]
+texture_filter = 1
+layout_mode = 0
+offset_left = 140.0
+offset_top = 91.0
+offset_right = 1350.0
+offset_bottom = 151.0
+theme = SubResource("Theme_ww3rf")
+theme_override_colors/font_color = Color(0.70056236, 0.56571054, 0.5249374, 1)
+theme_override_colors/font_shadow_color = Color(0.35846528, 0.29192588, 0.36134467, 0)
+theme_override_colors/font_outline_color = Color(0.9098039, 0.2784314, 0.2784314, 1)
+theme_override_font_sizes/font_size = 33
+text = "Mission: don't die, kill enemies and upgrade Your Space Crft"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://coqh2ixnerst"]
+
+[ext_resource type="Script" uid="uid://cvlamm3lko4qw" path="res://Space Rockets/scenes/Enemy.gd" id="1_jteha"]
+[ext_resource type="Texture2D" uid="uid://cjx07veiktvka" path="res://Resources/Sprites Art By Hannan/1st_Enemy.png" id="2_jteha"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwwco"]
+size = Vector2(51.36706, 43.944122)
+
+[node name="Enemy" type="Area2D" unique_id=575438173]
+script = ExtResource("1_jteha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1311902917]
+texture_filter = 1
+position = Vector2(-3.4999979, 1.0000005)
+scale = Vector2(2.3945308, 1.9570307)
+shape = SubResource("RectangleShape2D_vwwco")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=859114571]
+position = Vector2(-2.0281954, 3.12597)
+scale = Vector2(0.42667544, 0.32767165)
+texture = ExtResource("2_jteha")

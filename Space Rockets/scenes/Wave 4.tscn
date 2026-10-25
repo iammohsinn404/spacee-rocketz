@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dkupgbwj4srw3"]
+
+[ext_resource type="Texture2D" uid="uid://cfvvupgvc23k" path="res://Resources/Backgrounds by some websites/Space_4.jpg" id="1_hr42j"]
+
+[node name="Node2D" type="Node2D" unique_id=6960204]
+
+[node name="SpaceShipBody2D" type="CharacterBody2D" parent="." unique_id=389960475]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpaceShipBody2D" unique_id=626076026]
+
+[node name="Camera2D" type="Camera2D" parent="SpaceShipBody2D" unique_id=952441805]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceShipBody2D" unique_id=317406584]
+
+[node name="Space4" type="Sprite2D" parent="." unique_id=582561967]
+texture_filter = 1
+position = Vector2(86, -443)
+scale = Vector2(0.3127872, 0.5839918)
+texture = ExtResource("1_hr42j")
