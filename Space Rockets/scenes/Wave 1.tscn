@@ -28,15 +28,15 @@ texture = ExtResource("1_pwk3k")
 
 [node name="Space2" type="Sprite2D" parent="Background" unique_id=1111509834]
 texture_filter = 1
-position = Vector2(23.999998, -714.00006)
-scale = Vector2(0.22855572, 0.74846846)
+position = Vector2(23.999998, -6817.891)
+scale = Vector2(0.22855572, 4.1096416)
 texture = ExtResource("1_pwk3k")
 
 [node name="Hearts" type="Node2D" parent="." unique_id=1369665587]
-position = Vector2(442, -33)
+position = Vector2(297, -29)
 script = ExtResource("4_2uv2u")
 
-[node name="SpaceShipBody2D" type="CharacterBody2D" parent="." unique_id=2131993864]
+[node name="SpaceShipBody2D" type="CharacterBody2D" parent="." unique_id=2131993864 groups=["player"]]
 position = Vector2(-1, 1)
 script = ExtResource("2_2uv2u")
 
@@ -65,19 +65,19 @@ theme_override_font_sizes/font_size = 52
 text = "Score = "
 
 [node name="Wave" type="Label" parent="." unique_id=317851590]
-offset_left = 336.0
-offset_top = -101.0
-offset_right = 526.0
-offset_bottom = -57.0
+offset_left = 365.0
+offset_top = -93.0
+offset_right = 555.0
+offset_bottom = -49.0
 offset_transform_enabled = true
 theme_override_fonts/font = ExtResource("5_4eqo5")
 theme_override_font_sizes/font_size = 30
 text = "Wave = "
 
 [node name="Size" type="Label" parent="." unique_id=661214768]
-offset_left = 123.0
+offset_left = 96.0
 offset_top = -110.0
-offset_right = 258.0
+offset_right = 231.0
 offset_bottom = -55.0
 theme_override_fonts/font = ExtResource("3_m1q67")
 theme_override_font_sizes/font_size = 40

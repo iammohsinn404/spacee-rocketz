@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwwco"]
 size = Vector2(51.36706, 43.944122)
 
-[node name="Enemy" type="Area2D" unique_id=575438173]
+[node name="Enemy" type="Area2D" unique_id=575438173 groups=["enemies"]]
 script = ExtResource("1_jteha")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1311902917]

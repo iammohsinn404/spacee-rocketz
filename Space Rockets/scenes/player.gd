@@ -41,7 +41,7 @@ func _physics_process(delta):
 		shoot()
 		cooldown = FIRE_RATE
 		
-		invincible_time -= delta
+		invincible_time = maxf(0.0, invincible_time - delta)
 		sprite.modulate.a = 0.4 if invincible_time > 0 else 1.0
  
 
@@ -52,14 +52,15 @@ func shoot():
 		bullet.global_position = muzzle.global_position + Vector2(x, 0)
 	
 	
-func take_damage(amount):
+func take_damage(amount: int) -> void:
 	if invincible_time > 0:
 		return
-		
-		health -= amount
-		invincible_time = 1.0
-		health_changed.emit(health)
-		
-		if health <= 0:
-			died.emit()
-			queue_free()
+
+	health -= amount
+	invincible_time = 1.0
+
+	health_changed.emit(health)
+
+	if health <= 0:
+		died.emit()
+		queue_free()

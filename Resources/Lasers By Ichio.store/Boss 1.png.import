@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vvjmqlpqe344"
-path="res://.godot/imported/bullet.png-5a10e4a12d1dad655fec8eb0cc3b7fc2.ctex"
+uid="uid://cgrlaf8nbon5f"
+path="res://.godot/imported/Boss 1.png-08d79f9eacf2d508ae5408a55bacbf1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-5a10e4a12d1dad655fec8eb0cc3b7fc2.ctex"]
+source_file="res://Resources/Lasers By Ichio.store/Boss 1.png"
+dest_files=["res://.godot/imported/Boss 1.png-08d79f9eacf2d508ae5408a55bacbf1a.ctex"]
 
 [params]
 

@@ -24,6 +24,14 @@ func _physics_process(delta):
 	
 		# player bullets only hurt enemies, enemy bullets only hurt the player
 		
-func _on_hit(other):
-		other.take_damage(1)
-		queue_free()
+func _on_hit(other: Node) -> void:
+	if from_player:
+		if other.is_in_group("enemies"):
+			if other.has_method("take_damage"):
+				other.take_damage(1)
+				queue_free()
+	else:
+		if other == get_tree().get_first_node_in_group("player"):
+			if other.has_method("take_damage"):
+				other.take_damage(1)
+				queue_free()

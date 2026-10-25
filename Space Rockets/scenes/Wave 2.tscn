@@ -14,6 +14,6 @@
 
 [node name="Space2" type="Sprite2D" parent="." unique_id=1728227771]
 texture_filter = 1
-position = Vector2(142, -315.00024)
-scale = Vector2(0.49481508, 0.49239632)
+position = Vector2(-201.99927, -6163)
+scale = Vector2(2.1327343, 4.1987324)
 texture = ExtResource("1_eptla")

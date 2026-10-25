@@ -15,6 +15,7 @@ var shoot_timer = 2.0
 @onready var hitbox = $CollisionShape2D
 
 func _ready():
+	add_to_group("enemies")
 	collision_layer = 2
 	collision_mask = 1
 	body_entered.connect(_on_body_entered)
@@ -33,6 +34,7 @@ func setup(data):
 	$Sprite2D.scale = Vector2.ONE
 	hitbox.scale = Vector2.ONE
 	$Sprite2D.texture = load(data.sprite)
+	sprite.flip_v = true
 	GameState.fit_hitbox(sprite, hitbox)
 
 func _physics_process(delta):
@@ -71,6 +73,7 @@ func take_damage(amount):
 		create_tween().tween_property($Sprite2D, "modulate", Color.WHITE, 0.15)
 	
 	
-func _on_body_entered(body):
-		body.take_damage(1)
-		take_damage(1)
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		if body.has_method("take_damage"):
+			body.take_damage(1)
