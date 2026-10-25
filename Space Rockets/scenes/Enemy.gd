@@ -120,4 +120,3 @@ func take_damage(amount):
 		$Sprite2D.modulate = Color.RED
 		create_tween().tween_property(sprite, "modulate", Color.WHITE, 0.15)
 	
-	
