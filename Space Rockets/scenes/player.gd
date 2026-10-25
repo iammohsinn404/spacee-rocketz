@@ -5,9 +5,12 @@ signal died
 
 const SPEED = 300.0
 const FIRE_RATE = 0.25
+const MAX_HEALTH = 3
+const INVINCIBLE_SECONDS = 1.0
+const SHIP_BOTTOM_LIMIT = 525.0
 const BULLET = preload("res://Space Rockets/scenes/bullet.tscn")
 
-var health = 3
+var health = MAX_HEALTH
 var invincible_time = 0.0
 var cooldown = 0.0
 var ship
@@ -17,6 +20,7 @@ var ship
 @onready var hitbox = $CollisionShape2D
 
 func _ready():
+	add_to_group("player")
 	collision_layer = 1
 	collision_mask = 0
 	
@@ -25,8 +29,13 @@ func _ready():
 	sprite.scale = Vector2.ONE * ship.scale
 	GameState.fit_hitbox(sprite, hitbox)
 	
+	var ship_bottom = hitbox.position.y + hitbox.shape.size.y * 0.625
+	var lift = maxf(0.0, ship_bottom - SHIP_BOTTOM_LIMIT)
+	sprite.position.y -= lift
+	hitbox.position.y -= lift
 	
-	muzzle.position = Vector2(hitbox.position.x, hitbox.position.y - hitbox.shape.size.y)
+	
+	muzzle.position = Vector2(hitbox.position.x, hitbox.position.y - hitbox.shape.size.y * 0.6)
 	
 	
 func _physics_process(delta):
@@ -43,8 +52,11 @@ func _physics_process(delta):
 		
 		invincible_time = maxf(0.0, invincible_time - delta)
 		sprite.modulate.a = 0.4 if invincible_time > 0 else 1.0
+		
+		
+func center_position() -> Vector2:
+	return hitbox.global_position		
  
-
 func shoot():
 	for x in ship.guns:
 		var bullet = BULLET.instantiate()
@@ -53,12 +65,11 @@ func shoot():
 	
 	
 func take_damage(amount: int) -> void:
-	if invincible_time > 0:
+	if invincible_time > 0 or health <= 0:
 		return
 
-	health -= amount
-	invincible_time = 1.0
-
+	health = maxi(0, health - amount)
+	invincible_time = INVINCIBLE_SECONDS
 	health_changed.emit(health)
 
 	if health <= 0:
