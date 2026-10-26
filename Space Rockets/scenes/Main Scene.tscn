@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bcksd6pj3ifd"]
 
 [ext_resource type="Script" uid="uid://cu4gr8maiks1e" path="res://Space Rockets/controls.gd" id="1_tig3g"]
+[ext_resource type="Texture2D" uid="uid://dpra1i3wskubc" path="res://Resources/Sprites Art By Hannan/player_1_Small.png" id="2_6i30k"]
 [ext_resource type="Texture2D" uid="uid://bcp8whstk8rni" path="res://Resources/Backgrounds by some websites/I guess MAin one.jpg" id="2_tig3g"]
+[ext_resource type="FontFile" uid="uid://dgsxur3li8qvc" path="res://Resources/FONTS AND STYLES/Finger_Paint/FingerPaint-Regular.ttf" id="3_mw6l7"]
 [ext_resource type="FontFile" uid="uid://cmp4q454v5pcs" path="res://Resources/FONTS AND STYLES/Amatic_SC/AmaticSC-Regular.ttf" id="3_ukr7x"]
 [ext_resource type="FontFile" uid="uid://jbxi4nt1bbla" path="res://Resources/FONTS AND STYLES/Trade_Winds/TradeWinds-Regular.ttf" id="4_s2vbp"]
 [ext_resource type="FontFile" uid="uid://d3rkurieewesi" path="res://Resources/FONTS AND STYLES/Playpen_Sans/PlaypenSans-VariableFont_wght.ttf" id="5_ukr7x"]
@@ -26,7 +28,7 @@ script = ExtResource("1_tig3g")
 metadata/_edit_use_anchors_ = true
 
 [node name="IGuessMAinOne" type="Sprite2D" parent="." unique_id=1565906338]
-position = Vector2(579, 327.49994)
+position = Vector2(578, 323)
 scale = Vector2(0.25714284, 0.10798594)
 texture = ExtResource("2_tig3g")
 
@@ -78,6 +80,27 @@ theme_override_colors/font_shadow_color = Color(0.35846528, 0.29192588, 0.361344
 theme_override_colors/font_outline_color = Color(0.9098039, 0.2784314, 0.2784314, 1)
 theme_override_font_sizes/font_size = 33
 text = "Mission: don't die, kill enemies and upgrade Your Space Crft"
+
+[node name="LittleShip" type="Node2D" parent="." unique_id=1511467667]
+position = Vector2(554, 440)
+
+[node name="Sprite2D" type="Sprite2D" parent="LittleShip" unique_id=1622794835]
+position = Vector2(-439, 88)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_6i30k")
+
+[node name="Label" type="Label" parent="LittleShip" unique_id=564277119]
+offset_left = -293.0
+offset_top = 72.0
+offset_right = 194.0
+offset_bottom = 181.0
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(1, 0.7529412, 1, 1)
+theme_override_fonts/font = ExtResource("3_mw6l7")
+theme_override_font_sizes/font_size = 36
+text = "Helpp!!
+            Just  A Little Guyy"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
