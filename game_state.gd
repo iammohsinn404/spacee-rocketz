@@ -10,9 +10,18 @@ var wave = 0
 var score = 0
 
 var ships = [
-	{"name": "Small",   "sprite": SMALL_SHIP,                  "scale": 0.4,  "guns": [0]},
-	{"name": "Medium",  "sprite": ART + "player_2_Medium.png",  "scale": 0.42, "guns": [-12, 12]},
-	{"name": "Biggest", "sprite": ART + "player 3 Biggest.png", "scale": 0.37, "guns": [-25, 0, 25]},
+	{
+		"name": "Small",   "sprite": SMALL_SHIP,                  "scale": 0.4,  "guns": [0],
+		"laser": LASERS + "Small Ship.png",   "laser_scale": 0.16, "laser_speed": 600,
+	},
+	{
+		"name": "Medium",  "sprite": ART + "player_2_Medium.png",  "scale": 0.42, "guns": [-12, 12],
+		"laser": LASERS + "Medium Ship.png",  "laser_scale": 0.17, "laser_speed": 700,
+	},
+	{
+		"name": "Biggest", "sprite": ART + "player 3 Biggest.png", "scale": 0.37, "guns": [-25, 0, 25],
+		"laser": LASERS + "Biggest Ship.png", "laser_scale": 0.18, "laser_speed": 800,
+	},
 ]
 
 var enemy_types = {

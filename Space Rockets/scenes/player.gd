@@ -14,6 +14,7 @@ var health = MAX_HEALTH
 var invincible_time = 0.0
 var cooldown = 0.0
 var ship
+var laser_texture: Texture2D = null
 
 @onready var muzzle = $Muzzle
 @onready var sprite = $Sprite2D
@@ -28,6 +29,7 @@ func _ready():
 	ship = GameState.current_ship()
 	sprite.texture = load(ship.sprite)
 	sprite.scale = Vector2.ONE * ship.scale
+	laser_texture = load(ship.laser)
 	GameState.fit_hitbox(sprite, hitbox)
 
  
@@ -61,6 +63,10 @@ func center_position() -> Vector2:
 func shoot():
 	for x in ship.guns:
 		var bullet = BULLET.instantiate()
+		
+		bullet.texture = laser_texture
+		bullet.texture_scale = ship.laser_scale
+		bullet.speed = ship.laser_speed
 		get_parent().add_child(bullet)
 		bullet.global_position = muzzle.global_position + Vector2(x, 0)
 
