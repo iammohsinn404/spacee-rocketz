@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cu4gr8maiks1e" path="res://Space Rockets/controls.gd" id="1_tig3g"]
 [ext_resource type="Texture2D" uid="uid://dpra1i3wskubc" path="res://Resources/Sprites Art By Hannan/player_1_Small.png" id="2_6i30k"]
 [ext_resource type="Texture2D" uid="uid://bcp8whstk8rni" path="res://Resources/Backgrounds by some websites/I guess MAin one.jpg" id="2_tig3g"]
+[ext_resource type="FontFile" uid="uid://ciq2lf8eahdm" path="res://Resources/FONTS AND STYLES/Amatic_SC/AmaticSC-Bold.ttf" id="3_le1gb"]
 [ext_resource type="FontFile" uid="uid://dgsxur3li8qvc" path="res://Resources/FONTS AND STYLES/Finger_Paint/FingerPaint-Regular.ttf" id="3_mw6l7"]
 [ext_resource type="FontFile" uid="uid://cmp4q454v5pcs" path="res://Resources/FONTS AND STYLES/Amatic_SC/AmaticSC-Regular.ttf" id="3_ukr7x"]
 [ext_resource type="FontFile" uid="uid://jbxi4nt1bbla" path="res://Resources/FONTS AND STYLES/Trade_Winds/TradeWinds-Regular.ttf" id="4_s2vbp"]
@@ -34,15 +35,27 @@ texture = ExtResource("2_tig3g")
 
 [node name="Play" type="Button" parent="." unique_id=1203941721]
 layout_mode = 0
-offset_left = 427.0
-offset_top = 232.0
-offset_right = 682.0
-offset_bottom = 357.0
+offset_left = 429.0
+offset_top = 165.0
+offset_right = 684.0
+offset_bottom = 290.0
 theme = SubResource("Theme_ug1lx")
 theme_override_colors/font_color = Color(0.7763785, 0.08055066, 0.531882, 1)
-theme_override_fonts/font = ExtResource("3_ukr7x")
+theme_override_fonts/font = ExtResource("3_le1gb")
 theme_override_font_sizes/font_size = 71
 text = "Play"
+
+[node name="Endless Void" type="Button" parent="." unique_id=1914922838]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 298.0
+offset_right = 685.0
+offset_bottom = 423.0
+theme = SubResource("Theme_ug1lx")
+theme_override_colors/font_color = Color(0.64831686, 0.5145793, 0.41715172, 1)
+theme_override_fonts/font = ExtResource("3_ukr7x")
+theme_override_font_sizes/font_size = 71
+text = "Endless Void"
 
 [node name="Quit" type="Button" parent="." unique_id=1719440492]
 layout_mode = 0
@@ -90,10 +103,10 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_6i30k")
 
 [node name="Label" type="Label" parent="LittleShip" unique_id=564277119]
-offset_left = -293.0
-offset_top = 72.0
-offset_right = 194.0
-offset_bottom = 181.0
+offset_left = -497.0
+offset_top = 37.0
+offset_right = 11.0
+offset_bottom = 148.0
 offset_transform_enabled = true
 theme_override_colors/font_color = Color(1, 0.7529412, 1, 1)
 theme_override_fonts/font = ExtResource("3_mw6l7")
@@ -103,4 +116,6 @@ text = "Helpp!!
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Endless Void" to="." method="_on_endless_void_pressed"]
+[connection signal="pressed" from="Endless Void" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

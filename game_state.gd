@@ -6,8 +6,14 @@ const LASERS = "res://Resources/Lasers By Ichio.store/"
 const SCENES = "res://Space Rockets/scenes/"
 const SMALL_SHIP = "res://Resources/Sprites Art By Hannan/player_1_Small.png"
 
+# For Endless void score save
+const SAVE_PATH = "user://space_rocktz_save.cfg"
+
 var wave = 0 
 var score = 0
+var high_score = 0
+var endless = false
+var endless_ship = 0
 
 var ships = [
 	{
@@ -92,18 +98,46 @@ var waves = [
 	},
 ]
 
+func _ready():
+	load_high_score()
+
 
 func current_wave():
 	return waves[wave]
 	
 	
 func current_ship():
-	return ships[current_wave().ship]	
+	if endless:
+		return ships[endless_ship]
+	return ships[current_wave().ship]
 
-func reset():
+
+func reset(start_endless := false):
 	wave = 0
 	score = 0
-	
+	endless = start_endless
+	endless_ship = 0
+
+# High Score Endless Voidddd
+
+func load_high_score():
+	var config = ConfigFile.new()
+	if config.load(SAVE_PATH) == OK:
+		high_score = int(config.get_value("endless", "high_score", 0))
+		
+func save_high_score():
+	var config = ConfigFile.new()
+	config.set_value("endless", "high_score", high_score)
+	config.save(SAVE_PATH)
+			
+func submit_high_score(final_score: int) -> bool:
+	if final_score <= high_score:
+		return false
+		
+	high_score = final_score
+	save_high_score()
+	return true
+		
 
 func fit_hitbox(sprite: Sprite2D, hitbox: CollisionShape2D, shrink := 0.8):
 	var image = sprite.texture.get_image()

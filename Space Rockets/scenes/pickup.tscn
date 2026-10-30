@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://jypi6y0i40wa"]
+
+[ext_resource type="Script" uid="uid://dwvm5kghi8pbe" path="res://Space Rockets/scenes/pickup.gd" id="1_m28l1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pickup"]
+radius = 24.0
+
+[node name="Pickup" type="Area2D" unique_id=1368017336]
+script = ExtResource("1_m28l1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=37088251]
+shape = SubResource("CircleShape2D_pickup")
