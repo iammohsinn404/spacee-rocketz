@@ -117,5 +117,4 @@ horizontal_alignment = 1
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Endless Void" to="." method="_on_endless_void_pressed"]
-[connection signal="pressed" from="Endless Void" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
