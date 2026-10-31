@@ -1,3 +1,84 @@
 [gd_scene format=3 uid="uid://cyhm57huvccug"]
 
+[ext_resource type="Script" uid="uid://6t5pp0d1b7hy" path="res://Space Rockets/scenes/endless_mode.gd" id="1_4eqo5"]
+[ext_resource type="Texture2D" uid="uid://bawx41db5e1of" path="res://Resources/Backgrounds by some websites/Space_1.jpg" id="1_pwk3k"]
+[ext_resource type="Script" uid="uid://denqk403fu3ci" path="res://Space Rockets/scenes/player.gd" id="2_2uv2u"]
+[ext_resource type="Script" uid="uid://c20038yjra3n7" path="res://Space Rockets/scenes/scrolling-bg.gd" id="2_gagwc"]
+[ext_resource type="FontFile" uid="uid://dwpcp8orq1jv" path="res://Resources/FONTS AND STYLES/Schoolbell/Schoolbell-Regular.ttf" id="3_m1q67"]
+[ext_resource type="Script" uid="uid://bmxgs3aolx267" path="res://Space Rockets/scenes/hearts.gd" id="4_2uv2u"]
+[ext_resource type="FontFile" uid="uid://jbxi4nt1bbla" path="res://Resources/FONTS AND STYLES/Trade_Winds/TradeWinds-Regular.ttf" id="5_4eqo5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gagwc"]
+size = Vector2(90, 120)
+
 [node name="EndlessMode" type="Node2D" unique_id=906246877]
+script = ExtResource("1_4eqo5")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=481516063]
+position = Vector2(27, 217)
+
+[node name="Background" type="Node2D" parent="." unique_id=96371630]
+script = ExtResource("2_gagwc")
+
+[node name="Space1" type="Sprite2D" parent="Background" unique_id=1576935354]
+texture_filter = 1
+position = Vector2(24.000008, -169)
+scale = Vector2(0.22855572, 0.44847873)
+texture = ExtResource("1_pwk3k")
+
+[node name="Space2" type="Sprite2D" parent="Background" unique_id=1111509834]
+texture_filter = 1
+position = Vector2(23.999998, -6817.891)
+scale = Vector2(0.22855572, 4.1096416)
+texture = ExtResource("1_pwk3k")
+
+[node name="Hearts" type="Node2D" parent="." unique_id=1369665587]
+position = Vector2(297, -29)
+script = ExtResource("4_2uv2u")
+
+[node name="SpaceShipBody2D" type="CharacterBody2D" parent="." unique_id=2131993864 groups=["player"]]
+position = Vector2(-1, 1)
+script = ExtResource("2_2uv2u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpaceShipBody2D" unique_id=202904222]
+modulate = Color(1, 0.7735892, 0.70168144, 1)
+position = Vector2(20, 491)
+shape = SubResource("RectangleShape2D_gagwc")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceShipBody2D" unique_id=1937682236]
+texture_filter = 1
+position = Vector2(26.462143, 481.88864)
+scale = Vector2(0.39684767, 0.35136542)
+
+[node name="Muzzle" type="Marker2D" parent="SpaceShipBody2D" unique_id=1897852554]
+texture_filter = 1
+position = Vector2(11, 394)
+
+[node name="Score" type="Label" parent="." unique_id=806582146]
+texture_filter = 1
+offset_left = -536.0
+offset_top = -106.0
+offset_right = -326.0
+offset_bottom = -22.0
+theme_override_fonts/font = ExtResource("3_m1q67")
+theme_override_font_sizes/font_size = 52
+text = "Score = "
+
+[node name="Wave" type="Label" parent="." unique_id=317851590]
+offset_left = 365.0
+offset_top = -93.0
+offset_right = 555.0
+offset_bottom = -49.0
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("5_4eqo5")
+theme_override_font_sizes/font_size = 30
+text = "Wave = "
+
+[node name="Size" type="Label" parent="." unique_id=661214768]
+offset_left = 96.0
+offset_top = -110.0
+offset_right = 231.0
+offset_bottom = -55.0
+theme_override_fonts/font = ExtResource("3_m1q67")
+theme_override_font_sizes/font_size = 40
+text = "Size ="

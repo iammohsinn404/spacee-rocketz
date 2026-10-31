@@ -5,6 +5,7 @@ const ENDLESS_SCENE = "res://Space Rockets/scenes/endless_mode.tscn"
 
 @onready var little_ship: Node2D = get_node_or_null("LittleShip")
 @onready var high_score_label: Label = get_node_or_null("HighScore")
+@onready var is_leaving = false
 
 
 func _ready() -> void:
@@ -42,13 +43,20 @@ func float_little_ship() -> void:
 
 
 func _on_play_pressed() -> void:
-	GameState.reset()
-	get_tree().change_scene_to_file(CAMPAIGN_SCENE)
-	
+	start_game(CAMPAIGN_SCENE, false)
+
+
 func _on_endless_void_pressed() -> void:
-	GameState.reset(true)
-	get_tree().change_scene_to_file(ENDLESS_SCENE)
-	
+	start_game(ENDLESS_SCENE, true)
+
+
+func start_game(scene_path: String, endless: bool) -> void:
+	if is_leaving:
+		return
+
+	is_leaving = true
+	GameState.reset(endless)
+	get_tree().change_scene_to_file(scene_path)
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
