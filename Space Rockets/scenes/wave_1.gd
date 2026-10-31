@@ -6,6 +6,7 @@ const ENEMY = preload("res://Space Rockets/scenes/enemy.tscn")
 const MENU_SCENE = "res://Space Rockets/scenes/Main Scene.tscn"
 const MESSAGE_FONT = "res://Resources/FONTS AND STYLES/Trade_Winds/TradeWinds-Regular.ttf"
 const BOSS_SPAWN_POSITION = Vector2(27, -260)
+const PAUSE_MENU = preload("res://Space Rockets/scenes/pause_menu.gd")
 
 var data
 var phase = Phase.SPAWNING
@@ -46,6 +47,10 @@ func _ready():
 	hearts.set_health(player.health)
 	player.health_changed.connect(hearts.set_health)
 	player.died.connect(_on_player_died)
+	
+	var pause_menu = PAUSE_MENU.new()
+	pause_menu.restart_score = start_score
+	add_child(pause_menu)
 
 	run_wave()
 

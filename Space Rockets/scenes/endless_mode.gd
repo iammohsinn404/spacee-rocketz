@@ -7,6 +7,7 @@ const ENEMY = preload("res://Space Rockets/scenes/enemy.tscn")
 const PICKUP = preload("res://Space Rockets/scenes/pickup.tscn")
 const POPUP_FONT = preload("res://Resources/FONTS AND STYLES/Trade_Winds/TradeWinds-Regular.ttf")
 const BOSS_SPAWN_POSITION = Vector2(27, -260)
+const PAUSE_MENU = preload("res://Space Rockets/scenes/pause_menu.gd")
 
 const BOSS_EVERY = 5
 const MAX_ALIVE = 8
@@ -53,6 +54,8 @@ func _ready():
 	update_score()
 	update_stage()
 	update_size()
+	
+	add_child(PAUSE_MENU.new())
 
 	run_endless()
 	

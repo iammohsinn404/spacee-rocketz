@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccem881tn0naa"
+path="res://.godot/imported/Boss Fight Music.mp3-b00ce08b3755a3ae838dc96262be98aa.mp3str"
+
+[deps]
+
+source_file="res://Resources/Sounds by Pixabay/Boss Fight Music.mp3"
+dest_files=["res://.godot/imported/Boss Fight Music.mp3-b00ce08b3755a3ae838dc96262be98aa.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

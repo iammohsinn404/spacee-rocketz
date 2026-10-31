@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bl0no5pw53qep"
+path="res://.godot/imported/heart.mp3-59d3b98512392adb28269c91ae4eaac1.mp3str"
+
+[deps]
+
+source_file="res://Resources/Sounds by Pixabay/heart.mp3"
+dest_files=["res://.godot/imported/heart.mp3-59d3b98512392adb28269c91ae4eaac1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -56,29 +56,29 @@ position = Vector2(11, 394)
 
 [node name="Score" type="Label" parent="." unique_id=806582146]
 texture_filter = 1
-offset_left = -536.0
-offset_top = -106.0
-offset_right = -326.0
-offset_bottom = -22.0
+offset_left = -527.0
+offset_top = -112.0
+offset_right = -317.0
+offset_bottom = -28.0
 theme_override_fonts/font = ExtResource("3_m1q67")
 theme_override_font_sizes/font_size = 52
 text = "Score = "
 
 [node name="Wave" type="Label" parent="." unique_id=317851590]
-offset_left = 365.0
-offset_top = -93.0
-offset_right = 555.0
-offset_bottom = -49.0
+offset_left = 358.0
+offset_top = -101.0
+offset_right = 548.0
+offset_bottom = -57.0
 offset_transform_enabled = true
 theme_override_fonts/font = ExtResource("5_4eqo5")
 theme_override_font_sizes/font_size = 30
 text = "Wave = "
 
 [node name="Size" type="Label" parent="." unique_id=661214768]
-offset_left = 96.0
-offset_top = -110.0
-offset_right = 231.0
-offset_bottom = -55.0
+offset_left = 163.0
+offset_top = -107.0
+offset_right = 298.0
+offset_bottom = -52.0
 theme_override_fonts/font = ExtResource("3_m1q67")
 theme_override_font_sizes/font_size = 40
 text = "Size ="

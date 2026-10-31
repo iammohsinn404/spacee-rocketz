@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cl8i4wv05kiim"
+path="res://.godot/imported/Victory.mp3-a815548b39a7f60b17870a5783ba57b2.mp3str"
+
+[deps]
+
+source_file="res://Resources/Sounds by Pixabay/Victory.mp3"
+dest_files=["res://.godot/imported/Victory.mp3-a815548b39a7f60b17870a5783ba57b2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bo06hagofur4x"
+path="res://.godot/imported/enemy shoot.mp3-cbefa62fd2d53b2579bf49176ea9ef34.mp3str"
+
+[deps]
+
+source_file="res://Resources/Sounds by Pixabay/enemy shoot.mp3"
+dest_files=["res://.godot/imported/enemy shoot.mp3-cbefa62fd2d53b2579bf49176ea9ef34.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
