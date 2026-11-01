@@ -130,7 +130,8 @@ func run_endless():
 	while not finished:
 		update_stage()
 		load_background()
-
+		
+		Sound.play("stage_start")
 		show_message("STAGE %d" % stage, CYAN)
 		await wait(1.5)
 		show_message("")
@@ -171,7 +172,8 @@ func enemy_stage():
 func boss_stage():
 	phase = Phase.WARNING
 	show_message("WARNING!\nBOSS INCOMING", RED)
-	await wait(2.5)
+	Sound.play("warning")
+	await wait(4.0)
 	show_message("")
 	if finished:
 		return
@@ -181,32 +183,39 @@ func boss_stage():
 	if not spawn_boss(boss_name):
 		return
 
+	Sound.play_music("boss")
+
 	while boss_alive and not finished:
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 	if finished:
 		return
 
 	phase = Phase.CELEBRATING
 	boss_count += 1
 	upgrade_ship()
+	Sound.play_music("game")
 	show_message("BOSS DOWN!", GOLD)
 	await wait(2.0)
 	show_message("")
-		
+
+
 func upgrade_ship():
+	Sound.play("upgrade")
 	GameState.endless_ship = mini(boss_count, GameState.ships.size() - 1)
 	player.set_ship(GameState.current_ship())
 	update_size()
-		
+
+
 func wait(seconds):
 	var left = seconds
 	while left > 0.0 and not finished:
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.1, false).timeout
 		left -= 0.1
-		
+
+
 func wait_until_regular_dead():
 	while regular_alive > 0 and not finished:
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 		
 func spawn_enemy(type_name):
 	var enemy_data = GameState.enemy_types[type_name].duplicate()
@@ -296,29 +305,36 @@ func popup_at(at: Vector2, text: String, color: Color) -> void:
 func _on_player_died():
 	if finished:
 		return
-		
+
 	finished = true
 	phase = Phase.OVER
-	
+
+	Sound.stop_music()
+	Sound.play("game_over")
+	Sound.play("game_over_voice")
+
 	var is_new_best = GameState.submit_high_score(GameState.score)
 	best_label.text = "Best = %d" % GameState.high_score
-	
+
 	if is_new_best:
-		show_message("GAME OVER\nNEW BEST: %d!" % GameState.score)
+		show_message("GAME OVER\nNEW BEST: %d!" % GameState.score, GOLD)
 	else:
 		show_message("GAME OVER\nScore: %d\nBest: %d" % [GameState.score, GameState.high_score], RED)
-		
+
 	get_tree().call_group("enemies", "queue_free")
-	
+
 	retry_button.show()
 	menu_button.show()
 	retry_button.grab_focus()
-	
+
+
 func _retry():
+	Sound.play("tap")
 	GameState.reset(true)
 	get_tree().reload_current_scene()
 
 
 func _return_to_menu():
+	Sound.play("tap")
 	GameState.reset()
 	get_tree().change_scene_to_file(MENU_SCENE)

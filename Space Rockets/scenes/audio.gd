@@ -7,7 +7,7 @@ const EFFECT_VOLUME = -6.0
 const MUSIC_VOLUME = -12.0
 
 const EFFECTS = {
-	"shoot": "Shoot Short.mp3",
+	"shoot": "Shoot.mp3",
 	"enemy_shoot": "enemy shoot.mp3",
 	"tap": "TAP.mp3",
 	"hurt": "Hurt.mp3",
@@ -21,6 +21,11 @@ const EFFECTS = {
 	"victory": "Victory.mp3",
 	"game_over": "Game Over Music.mp3",
 	"game_over_voice": "Game Over Voice.mp3",
+}
+
+const VOLUME_OFFSETS = {
+	"game_over_voice": 10.0,
+	"game_over": -4.0,
 }
 
 const MUSIC = {
@@ -72,7 +77,7 @@ func play(sound_name: String, pitch_range := 0.0, volume_offset := 0.0) -> void:
 		if not player.playing:
 			player.stream = stream
 			player.pitch_scale = 1.0 + randf_range(-pitch_range, pitch_range)
-			player.volume_db = EFFECT_VOLUME + volume_offset
+			player.volume_db = EFFECT_VOLUME + volume_offset + VOLUME_OFFSETS.get(sound_name, 0.0)
 			player.play()
 			return
 			
