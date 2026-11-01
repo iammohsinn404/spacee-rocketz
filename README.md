@@ -7,6 +7,9 @@ in the endless void, i added the High Score working, to set the best, and all th
 ## TEAM
 I was working with my One Friend Hannan, he did the Art in the Folder Sprite by Hannan by own and it helped me alot, also he helped me in the coding too, till that jame game, then after the save point comes he have to work somewhere else so then i did all alone, but he helped me alot.
 
+## Game Play
+You have to go to this link: https://iammohsinn404.itch.io/spacee-rocketzz
+then click the run game or download and extract the file and click exe and it will run
 ## Credits
 This Game Idea was mine but, i am inspired by the space shooter game in the mobile phone, then i think i will not able to make it but then i made it.
 My Teacher and My Friend, who is known as somebodyouknow, tell me abt these hackclub and these both events so i am thank to him.
