@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bawx41db5e1of" path="res://Resources/Backgrounds by some websites/Space_1.jpg" id="1_pwk3k"]
 [ext_resource type="Script" uid="uid://denqk403fu3ci" path="res://Space Rockets/scenes/player.gd" id="2_2uv2u"]
 [ext_resource type="Script" uid="uid://c20038yjra3n7" path="res://Space Rockets/scenes/scrolling-bg.gd" id="2_gagwc"]
-[ext_resource type="FontFile" uid="uid://dwpcp8orq1jv" path="res://Resources/FONTS AND STYLES/Schoolbell/Schoolbell-Regular.ttf" id="3_m1q67"]
 [ext_resource type="Script" uid="uid://bmxgs3aolx267" path="res://Space Rockets/scenes/hearts.gd" id="4_2uv2u"]
 [ext_resource type="FontFile" uid="uid://jbxi4nt1bbla" path="res://Resources/FONTS AND STYLES/Trade_Winds/TradeWinds-Regular.ttf" id="5_4eqo5"]
+[ext_resource type="FontFile" uid="uid://ciq2lf8eahdm" path="res://Resources/FONTS AND STYLES/Amatic_SC/AmaticSC-Bold.ttf" id="6_2uv2u"]
+[ext_resource type="FontFile" uid="uid://dqn6tcam5mnyl" path="res://Resources/FONTS AND STYLES/Edu_NSW_ACT_Cursive/EduNSWACTCursive-VariableFont_wght.ttf" id="8_7kb52"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gagwc"]
 size = Vector2(90, 120)
@@ -33,7 +34,7 @@ scale = Vector2(0.22855572, 4.1096416)
 texture = ExtResource("1_pwk3k")
 
 [node name="Hearts" type="Node2D" parent="." unique_id=1369665587]
-position = Vector2(297, -29)
+position = Vector2(432, -30)
 script = ExtResource("4_2uv2u")
 
 [node name="SpaceShipBody2D" type="CharacterBody2D" parent="." unique_id=2131993864 groups=["player"]]
@@ -56,30 +57,30 @@ position = Vector2(11, 394)
 
 [node name="Score" type="Label" parent="." unique_id=806582146]
 texture_filter = 1
-offset_left = -527.0
-offset_top = -112.0
-offset_right = -317.0
-offset_bottom = -28.0
-theme_override_fonts/font = ExtResource("3_m1q67")
+offset_left = -543.0
+offset_top = -109.0
+offset_right = -333.0
+offset_bottom = -25.0
+theme_override_fonts/font = ExtResource("6_2uv2u")
 theme_override_font_sizes/font_size = 52
 text = "Score = "
 
 [node name="Wave" type="Label" parent="." unique_id=317851590]
-offset_left = 358.0
+offset_left = 265.0
 offset_top = -101.0
-offset_right = 548.0
-offset_bottom = -57.0
+offset_right = 455.0
+offset_bottom = -51.0
 offset_transform_enabled = true
 theme_override_fonts/font = ExtResource("5_4eqo5")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 34
 text = "Wave = "
 
 [node name="Size" type="Label" parent="." unique_id=661214768]
-offset_left = 163.0
-offset_top = -107.0
-offset_right = 298.0
-offset_bottom = -52.0
-theme_override_fonts/font = ExtResource("3_m1q67")
+offset_left = -549.0
+offset_top = -53.0
+offset_right = -414.0
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("8_7kb52")
 theme_override_font_sizes/font_size = 40
 text = "Size ="
 

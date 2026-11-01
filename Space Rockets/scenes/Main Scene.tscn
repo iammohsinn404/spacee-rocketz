@@ -98,15 +98,15 @@ text = "Mission: don't die, kill enemies and upgrade Your Space Crft"
 position = Vector2(554, 440)
 
 [node name="Sprite2D" type="Sprite2D" parent="LittleShip" unique_id=1622794835]
-position = Vector2(-439, 88)
+position = Vector2(-395.00003, 131)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_6i30k")
 
 [node name="Label" type="Label" parent="LittleShip" unique_id=564277119]
-offset_left = -497.0
-offset_top = 37.0
-offset_right = 11.0
-offset_bottom = 148.0
+offset_left = -666.0
+offset_top = -54.0
+offset_right = -158.0
+offset_bottom = 57.0
 offset_transform_enabled = true
 theme_override_colors/font_color = Color(1, 0.7529412, 1, 1)
 theme_override_fonts/font = ExtResource("3_mw6l7")
