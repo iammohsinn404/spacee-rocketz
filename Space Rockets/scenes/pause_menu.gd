@@ -21,6 +21,8 @@ func _ready():
 	if player != null:
 		player.died.connect(_on_player_died)
 		
+		
+		
 func build_pause_button():
 	pause_button = Button.new()
 	pause_button.text = "Menu"
@@ -33,6 +35,7 @@ func build_pause_button():
 	pause_button.offset_right = 50
 	pause_button.offset_top = 10
 	pause_button.offset_bottom = 54
+	pause_button.pressed.connect(Sound.play.bind("tap"))
 	pause_button.pressed.connect(open)
 	add_child(pause_button)
 	
@@ -67,6 +70,7 @@ func make_button(text: String, parent: Node, action: Callable) -> Button:
 	button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	button.add_theme_font_override("font", FONT)
 	button.add_theme_font_size_override("font_size", 56)
+	button.pressed.connect(Sound.play.bind("tap"))
 	button.pressed.connect(action)
 	parent.add_child(button)
 	return button

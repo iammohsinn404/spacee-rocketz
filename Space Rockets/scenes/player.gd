@@ -81,6 +81,8 @@ func center_position() -> Vector2:
 	
 
 func shoot():
+	Sound.play("shoot", 0.08)
+	
 	for x in ship.guns:
 		var bullet = BULLET.instantiate()
 		
@@ -98,8 +100,10 @@ func take_damage(amount: int) -> void:
 	health = maxi(0, health - amount)
 	invincible_time = INVINCIBLE_SECONDS
 	health_changed.emit(health)
+	Sound.play("hurt")
 
 	if health <= 0:
+		Sound.play("explosion")
 		died.emit()
 		queue_free()
 
@@ -109,6 +113,8 @@ func heal(amount: int) -> void:
 		
 	health = mini(MAX_HEALTH, health + amount)
 	health_changed.emit(health)
+	Sound.play("heart")
 	
 func start_overdrive(seconds: float) -> void:
+	Sound.play("overdrive")
 	overdrive_time = maxf(overdrive_time, seconds)		

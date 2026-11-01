@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.7", "Mobile")
 [autoload]
 
 GameState="*uid://dkb5ppfqqws1l"
+Sound="*uid://dxkcgko87ywj6"
 
 [display]
 

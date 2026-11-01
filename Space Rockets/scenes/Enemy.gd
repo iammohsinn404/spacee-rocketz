@@ -103,8 +103,10 @@ func shoot():
 
 
 func fire_laser(from_position: Vector2, direction: Vector2):
+	Sound.play("enemy_shoot", 0.1, -8.0)
+
 	var laser = LASER.instantiate()
- 
+
 	laser.from_player = false
 	laser.direction = direction
 	laser.speed = laser_speed
@@ -119,6 +121,7 @@ func take_damage(amount):
 		return
 	hp -= amount
 	if hp <= 0:
+		Sound.play("explosion", 0.1)
 		died.emit()
 		queue_free()
 	else:

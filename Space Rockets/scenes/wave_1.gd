@@ -15,9 +15,7 @@ var boss_alive = false
 var start_score = 0
 var finished = false
 
-# FIX: Wave 1.tscn has no "Overlay" node, so the old @onready lines
-# ($Overlay/Message and $Overlay/MenuButton) were null and crashed _ready().
-# These two are now built in code (see build_overlay below).
+ 
 var message: Label
 var menu_button: Button
 
@@ -51,6 +49,9 @@ func _ready():
 	var pause_menu = PAUSE_MENU.new()
 	pause_menu.restart_score = start_score
 	add_child(pause_menu)
+
+	Sound.play_music("game")
+	Sound.play("stage_start")
 
 	run_wave()
 
@@ -131,20 +132,16 @@ func run_wave():
 	wave_cleared()
 
 
-# A timer that stops early once the wave is over. That way nothing is still
-# waiting when the scene reloads (that caused "class instance is gone" errors).
 func wait(seconds):
 	var left = seconds
 	while left > 0.0 and not finished:
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.2, false).timeout
 		left -= 0.1
 
 
-# FIX: there were two identical functions for this (await_unit_regular_dead and
-# wait_until_regular_dead). Kept one.
 func wait_until_regular_dead():
 	while regular_alive > 0 and not finished:
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 
 
 func spawn_enemy(type_name):
@@ -187,6 +184,7 @@ func spawn_boss(boss_name) -> bool:
 
 	add_child(boss)
 	boss_alive = true
+	Sound.play_music("boss")
 
 	return true
 
@@ -204,6 +202,7 @@ func _on_enemy_died(points):
 func _on_boss_died(points):
 	boss_alive = false
 	add_score(points)
+	Sound.play_music("game")
 
 
 func wave_cleared():
@@ -216,16 +215,20 @@ func wave_cleared():
 	if GameState.wave + 1 >= GameState.waves.size():
 		show_victory()
 	else:
+		Sound.play("wave_clear")
 		wave_label.text = "Wave %d Cleared!" % (GameState.wave + 1)
 		message.text = "Wave %d Cleared!" % (GameState.wave + 1)
 
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(2.0, false).timeout
 
 		GameState.wave += 1
 		get_tree().reload_current_scene()
 
 
 func show_victory():
+	Sound.stop_music()
+	Sound.play("victory")
+
 	wave_label.text = "YOU WIN!"
 	message.text = "VICTORY!\nThe final boss is down.\nFinal score: %d" % GameState.score
 
@@ -234,21 +237,25 @@ func show_victory():
 
 
 func _return_to_menu():
+	Sound.play("tap")
 	GameState.reset()
 	get_tree().change_scene_to_file(MENU_SCENE)
 
 
-# If all the hearts are gone: Game Over, then the same wave starts again.
 func _on_player_died():
 	if finished:
 		return
 
 	finished = true
 
+	Sound.stop_music()
+	Sound.play("game_over")
+	Sound.play("game_over_voice")
+
 	wave_label.text = "Game Over"
 	message.text = "GAME OVER"
 
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(2.0, false).timeout
 
 	GameState.score = start_score
 	get_tree().reload_current_scene()

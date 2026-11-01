@@ -55,6 +55,8 @@ func _ready():
 	update_stage()
 	update_size()
 	
+	Sound.play_music("game")
+	
 	add_child(PAUSE_MENU.new())
 
 	run_endless()
@@ -153,7 +155,7 @@ func enemy_stage():
 
 	for _i in range(count):
 		while regular_alive >= MAX_ALIVE and not finished:
-			await get_tree().create_timer(0.2).timeout
+			await get_tree().create_timer(0.2, false).timeout
 		if finished:
 			return
 

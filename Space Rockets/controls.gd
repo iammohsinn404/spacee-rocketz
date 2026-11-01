@@ -11,6 +11,8 @@ const ENDLESS_SCENE = "res://Space Rockets/scenes/endless_mode.tscn"
 func _ready() -> void:
 	show_high_score()
 	float_little_ship()
+	
+	Sound.play_music("menu")
 
 
 func show_high_score() -> void:
@@ -55,6 +57,7 @@ func start_game(scene_path: String, endless: bool) -> void:
 		return
 
 	is_leaving = true
+	Sound.play("tap")
 	GameState.reset(endless)
 	get_tree().change_scene_to_file(scene_path)
 
